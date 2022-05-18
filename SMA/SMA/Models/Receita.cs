@@ -31,6 +31,7 @@ namespace SMA.Models {
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
                      ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
+        [Display(Name = "Data de Prescrição")]
         public DateTime Prescricao { get; set; }
 
         ///////////////////////// <summary>

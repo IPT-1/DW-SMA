@@ -35,11 +35,13 @@ namespace SMA.Models {
         /// </summary>
         [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
         [StringLength(50, ErrorMessage = "O {0} não pode ter mais que {1} caracteres.")]
+        [Display(Name = "Laboratório")]
         public string Laboratorio { get; set; }
 
         /// <summary>
         /// Observações adicionais ao Medicamento (Facultativo).
         /// </summary>
+        [Display(Name = "Observações")]
         public string Observacoes { get; set; }
 
         /// <summary>

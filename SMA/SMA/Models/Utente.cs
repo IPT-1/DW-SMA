@@ -29,12 +29,14 @@ namespace SMA.Models {
         /// Número de telmóvel do Utente.
         /// </summary>
         [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
+        [Display(Name = "Telemóvel")]
         public string Telemovel { get; set; }
 
         /// <summary>
         /// Número de Utente de Saúde do Cartão de Cidadão do Utente.
         /// </summary>
         [Required(ErrorMessage = "O {0} é de preenchimento obrigatório")]
+        [Display(Name = "Número de Utente de Saúde")]
         public string NumeroUtenteSaude { get; set; }
 
         /// <summary>
@@ -49,6 +51,7 @@ namespace SMA.Models {
         /// </summary>
         [StringLength(1, ErrorMessage = "O {0} só aceita um caráter.")]
         [RegularExpression("[PM]", ErrorMessage = "No {0} só se aceitam as letras P ou M.")]
+        [Display(Name = "Paciente P / Médico M")]
         public string Tipo { get; set; }
 
         /// <summary>
