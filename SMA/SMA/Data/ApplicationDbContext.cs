@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using SMA.Models;
 
 namespace SMA.Data {
+    
+    /// <summary>
+    /// Esta classe funciona como base dados do projeto.
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) {

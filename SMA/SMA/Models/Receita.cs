@@ -26,19 +26,24 @@ namespace SMA.Models {
         /// </summary>
         public DateTime Prescricao { get; set; }
 
-        /// <summary>
-        /// Médico (FK) envolvente na Receita.
-        /// </summary>
-        [ForeignKey(nameof(Medico))]
-        public int MedicoFK { get; set; }
-        public Utente Medico { get; set; }
+        ///////////////////////// <summary>
+        ///////////////////////// Médico (FK) envolvente na Receita.
+        ///////////////////////// </summary>
+        //////////////////////[ForeignKey(nameof(Medico))]
+        //////////////////////public int MedicoFK { get; set; }
+        //////////////////////public Utente Medico { get; set; }
+
+        ///////////////////////// <summary>
+        ///////////////////////// Paciente (FK) envolvente na Receita.
+        ///////////////////////// </summary>
+        //////////////////////[ForeignKey(nameof(Paciente))]
+        //////////////////////public int PacienteFK { get; set; }
+        //////////////////////public Utente Paciente { get; set; }
 
         /// <summary>
-        /// Paciente (FK) envolvente na Receita.
+        /// Lista de Utentes envolventes na Receita, um médico e um paciente.
         /// </summary>
-        [ForeignKey(nameof(Paciente))]
-        public int PacienteFK { get; set; }
-        public Utente Paciente { get; set; }
+        public ICollection<Utente> Utentes { get; set; }
 
         /// <summary>
         /// Lista de Medicamentos envolvidos na Receita.
