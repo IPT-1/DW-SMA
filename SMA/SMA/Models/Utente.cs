@@ -7,6 +7,7 @@
 
         public Utente() {
             Receitas = new HashSet<Receita>();
+            Pacientes = new HashSet<Utente>();
         }
 
         /// <summary>
@@ -43,6 +44,11 @@
         /// Lista de Receitas em que está envolvido.
         /// </summary>
         public ICollection<Receita> Receitas { get; set; }
+
+        /// <summary>
+        /// Lista dos seus Pacientes, se o Utente for Médico.
+        /// </summary>
+        public ICollection<Utente> Pacientes { get; set; }
 
     }
 }
