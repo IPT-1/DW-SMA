@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMA.Models {
     
@@ -19,11 +20,17 @@ namespace SMA.Models {
         /// <summary>
         /// Data de quando a Receita foi criada.
         /// </summary>
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
+                     ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
 
         /// <summary>
         /// Data de Prescrição da Receita.
         /// </summary>
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
+                     ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         public DateTime Prescricao { get; set; }
 
         ///////////////////////// <summary>

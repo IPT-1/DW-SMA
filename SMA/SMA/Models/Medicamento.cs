@@ -1,4 +1,6 @@
-﻿namespace SMA.Models {
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SMA.Models {
     
     /// <summary>
     /// Descreve os dados do Medicamento.
@@ -17,16 +19,22 @@
         /// <summary>
         /// Nome do Medicamento.
         /// </summary>
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
+        [StringLength(50, ErrorMessage = "O {0} não pode ter mais que {1} caracteres.")]
         public string Nome { get; set; }
 
         /// <summary>
         /// Dosagem do Medicamento.
         /// </summary>
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
+        [StringLength(5, ErrorMessage = "O {0} não pode ter mais que {1} caracteres.")]
         public string Dosagem { get; set; }
 
         /// <summary>
         /// Nome do Laboratório em que o Medicamento foi desenvolvido.
         /// </summary>
+        [Required(ErrorMessage = "O {0} é de preenchimento obrigatório.")]
+        [StringLength(50, ErrorMessage = "O {0} não pode ter mais que {1} caracteres.")]
         public string Laboratorio { get; set; }
 
         /// <summary>
