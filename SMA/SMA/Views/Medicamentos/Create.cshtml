@@ -27,11 +27,15 @@
                 <input asp-for="Laboratorio" class="form-control" />
                 <span asp-validation-for="Laboratorio" class="text-danger"></span>
             </div>
+            
+            @* Campo para as observações. *@
             <div class="form-group">
                 <label asp-for="Observacoes" class="control-label"></label>
-                <input asp-for="Observacoes" class="form-control" />
+                <textarea  asp-for="Observacoes" class="form-control" rows="5" ></textarea>
                 <span asp-validation-for="Observacoes" class="text-danger"></span>
             </div>
+            
+            @* Campo para a foto do medicamento. *@
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
                 @*<input asp-for="Foto" class="form-control" />*@
