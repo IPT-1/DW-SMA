@@ -70,13 +70,13 @@ namespace SMA.Controllers
         {
             if (id == null || _context.Utentes == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             var utente = await _context.Utentes.FindAsync(id);
             if (utente == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
             return View(utente);
         }
@@ -91,6 +91,17 @@ namespace SMA.Controllers
             if (id != utente.Id)
             {
                 return NotFound();
+            }
+
+            var utentesIDPreviouslyStored = HttpContext.Session.GetInt32("UtenteID");
+
+            if (utentesIDPreviouslyStored == null) {
+                ModelState.AddModelError("","Você passou o limite de tempo...");
+                return View(utente);
+            }
+
+            if (utentesIDPreviouslyStored != utente.Id) {
+                return RedirectToAction("Index");
             }
 
             if (ModelState.IsValid)

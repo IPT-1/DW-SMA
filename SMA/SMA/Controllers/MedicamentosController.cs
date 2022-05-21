@@ -16,11 +16,14 @@ namespace SMA.Controllers
     {
         // Cria uma instância de acesso à base de dados.
         private readonly ApplicationDbContext _context;
+        
+        // Variável que vai conter os dados do servidor.
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public MedicamentosController(ApplicationDbContext context)
+        public MedicamentosController(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Medicamentos
@@ -33,7 +36,7 @@ namespace SMA.Controllers
         // GET: Medicamentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Medicamentos == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -58,74 +61,117 @@ namespace SMA.Controllers
         // POST: Medicamentos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método usado para recuperar os dados enviados pelos utilizadores.
+        /// </summary>
+        /// <param name="medicamento"></param>
+        /// <param name="foto"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Dosagem,Laboratorio,Observacoes,Foto")] Medicamento medicamento, IFormFile foto)
-        {
+        public async Task<IActionResult> Create(
+            [Bind("Id,Nome,Dosagem,Laboratorio,Observacoes,Foto")] Medicamento medicamento, 
+            IFormFile foto) {
             
-            if (foto == null) { 
-                medicamento.Foto = "FotoDefault.png";
+            /**
+             * Algoritmo para processar ao ficheiro com a imagem.
+             * 
+             * Se imagem = nulo
+             *      atribui a imagem default ao medicamento
+             * Senão
+             *      ficheiro é imagem?
+             *      Se não for
+             *          criar mensagem de erro
+             *          devolver control da app à View
+             *      Se for
+             *          definir o nome a atribuir à imagem
+             *          atribuir aos dados do novo medicamento o nome do ficheiro da imagem
+             *          guardar a imagem no disco rígido do servido
+             */
+
+            // Verifica se tem ficheiro e se não tiver atribui imagem default.
+            if (foto == null) {
+                medicamento.Foto = "Default.png";
             } else {
-                if (!(foto.ContentType == "image/png" || foto.ContentType == "imagem/jpeg")) {  // Se não for um ficheiro de imagem...
-                    // Mostra mensagem de erro e devolve o controlo da app à View.
-                    ModelState.AddModelError("","Por favor, adicione um ficheiro .png ou .jpg");
+
+                // Verifica se é ficheiro e imagem.
+                if (!(foto.ContentType == "image/png" || foto.ContentType == "image/jpeg")) {
+                    // Se não for imagem mostra erro.
+                    ModelState.AddModelError("", "Por favor, adicione um ficheiro .png ou .jpg");
+                    // Devolve o controlo da app à View.
                     return View(medicamento);
-                } else {    // Se for ficheiro de imagem...
-                    // Define um nome para a imagem
-                    Guid id = Guid.NewGuid();
-                    string nomeImagem       = medicamento.Id.ToString() + "_" + id.ToString();
-                    string extensaoImagem   = Path.GetExtension(foto.FileName).ToLower();
-                    nomeImagem += extensaoImagem;
-                    medicamento.Foto = nomeImagem;
+                } else { 
+                    // Se for imagem define o nome da foto.
+                    Guid guid = Guid.NewGuid();
+                    string nomeFoto     = medicamento.Id + "_" + guid.ToString();
+                    string extensaoFoto = Path.GetExtension(foto.FileName).ToLower();
+                    nomeFoto += extensaoFoto;
+                    // Atribuir ao medicamento o nome da sua foto.
+                    medicamento.Foto = nomeFoto;
                 }
+
             }
 
-            // Validar se os dados providenciados pelo utilizador são bons.
-            if (ModelState.IsValid)
-            {
+            // Avalia se os dados fornecidos pelo utilizador estão de acordo com o Model
+            if (ModelState.IsValid) {
+
                 try {
-                    // Adiciona os dados do medicamento à base de dados.
+                    // Adicionar os dados à Base de Dados.
                     _context.Add(medicamento);
+                    // Sincronizar os dados.
                     await _context.SaveChangesAsync();
-                } catch (Exception) {
-                    // Mensagem de erro.
-                    ModelState.AddModelError("", "Ocorreu um erro. Não foi possível guardar os dados na base de dados.");
+                } catch (Exception ex) {
+                    // Criar uma mensagem de erro.
+                    ModelState.AddModelError("", "Ocorreu um erro com a operação de guardar os dados do medicamento " + medicamento.Nome);
+                    // Devolver o controlo da app à View.
                     return View(medicamento);
                 }
 
+                // #############################
+                // Guardar o ficheiro da foto. #
+                // #############################
                 if (foto != null) {
-                    // Guarda o ficheiro de imagem no disco.
-                    string diretoriaFicheiro = _webHostEnvironment.WebRootPath;
-                    string imagemLocalizacao = Path.Combine(diretoriaFicheiro, "Fotos", medicamento.Foto);
-
-                    // Verifica se a pasta 'Fotos' existe.
-                    if (!Directory.Exists(imagemLocalizacao)) {
-                        Directory.CreateDirectory(imagemLocalizacao);
+                    // Cria um caminho para o ficheiro.
+                    string nomeLocalizacaoFicheiro = _webHostEnvironment.WebRootPath;
+                    nomeLocalizacaoFicheiro = Path.Combine(nomeLocalizacaoFicheiro, "Fotos");
+                    // Verifica se a pasta 'Fotos' não existe. Se não existe cria a pasta.
+                    if (!Directory.Exists(nomeLocalizacaoFicheiro)) {
+                        Directory.CreateDirectory(nomeLocalizacaoFicheiro);
                     }
-                    
-                    // Guarda o ficheiro de imagem no disco.
-                    imagemLocalizacao = Path.Combine(imagemLocalizacao, medicamento.Foto);
-                    using var stream = new FileStream(imagemLocalizacao, FileMode.Create);
+                    // Nome do documento a guardar.
+                    string nomeDaFoto = Path.Combine(nomeLocalizacaoFicheiro, medicamento.Foto);
+                    // Cria o objeto que vai manipular o ficheiro.
+                    using var stream = new FileStream(nomeDaFoto, FileMode.Create);
+                    // Guarda o ficheiro no disco rígido.
                     await foto.CopyToAsync(stream);
                 }
-                return RedirectToAction(nameof(Index));
+
+                // Devolver o controlo da app à View.
+                return RedirectToAction("Index");
+
             }
+
             return View(medicamento);
+
         }
 
         // GET: Medicamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Medicamentos == null)
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             var medicamento = await _context.Medicamentos.FindAsync(id);
             if (medicamento == null)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
+
+            // Criação de uma variável de sessão para guardar o id do medicamento e assegurar que os dados não são alterados por engano.
+            HttpContext.Session.SetInt32("MedicamentoID", medicamento.Id);
+
             return View(medicamento);
         }
 

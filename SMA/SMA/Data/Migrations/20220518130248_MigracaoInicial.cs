@@ -223,13 +223,13 @@ namespace SMA.Migrations
                         column: x => x.MedicamentosId,
                         principalTable: "Medicamentos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MedicamentoReceita_Receitas_ReceitasId",
                         column: x => x.ReceitasId,
                         principalTable: "Receitas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -247,13 +247,13 @@ namespace SMA.Migrations
                         column: x => x.ReceitasId,
                         principalTable: "Receitas",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ReceitaUtente_Utentes_UtentesId",
                         column: x => x.UtentesId,
                         principalTable: "Utentes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
