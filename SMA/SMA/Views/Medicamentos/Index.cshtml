@@ -46,7 +46,19 @@
                 @Html.DisplayFor(modelItem => item.Observacoes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
+                
+                @if (string.IsNullOrEmpty(item.Foto))
+                {
+                    @*@Html.DisplayFor(modelItem => item.Foto)*@
+                    <a><img src="~/Fotos/@item.Foto" alt="Foto do medicamento: @Html.DisplayFor(modelItem => item.Foto)" 
+                    title="@item.Nome" height="50" /></a>
+                } else
+                {
+                    @*@Html.DisplayFor(modelItem => item.Foto)*@
+                    <img src="~/Fotos/@item.Foto" alt="Foto do medicamento: @Html.DisplayFor(modelItem => item.Foto)" 
+                    title="@item.Nome" height="50" />
+                }
+
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

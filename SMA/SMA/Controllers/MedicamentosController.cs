@@ -65,13 +65,11 @@ namespace SMA.Controllers
         /// Método usado para recuperar os dados enviados pelos utilizadores.
         /// </summary>
         /// <param name="medicamento"></param>
-        /// <param name="foto"></param>
+        /// <param name="novaFoto"></param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(
-            [Bind("Id,Nome,Dosagem,Laboratorio,Observacoes,Foto")] Medicamento medicamento, 
-            IFormFile foto) {
+        public async Task<IActionResult> Create([Bind("Id,Nome,Dosagem,Laboratorio,Observacoes,Foto")] Medicamento medicamento, IFormFile novaFoto) {
             
             /**
              * Algoritmo para processar ao ficheiro com a imagem.
@@ -90,12 +88,12 @@ namespace SMA.Controllers
              */
 
             // Verifica se tem ficheiro e se não tiver atribui imagem default.
-            if (foto == null) {
-                medicamento.Foto = "Default.png";
+            if (novaFoto == null) {
+                medicamento.Foto = "default.png";
             } else {
 
                 // Verifica se é ficheiro e imagem.
-                if (!(foto.ContentType == "image/png" || foto.ContentType == "image/jpeg")) {
+                if (!(novaFoto.ContentType == "image/png" || novaFoto.ContentType == "image/jpeg")) {
                     // Se não for imagem mostra erro.
                     ModelState.AddModelError("", "Por favor, adicione um ficheiro .png ou .jpg");
                     // Devolve o controlo da app à View.
@@ -103,8 +101,8 @@ namespace SMA.Controllers
                 } else { 
                     // Se for imagem define o nome da foto.
                     Guid guid = Guid.NewGuid();
-                    string nomeFoto     = medicamento.Id + "_" + guid.ToString();
-                    string extensaoFoto = Path.GetExtension(foto.FileName).ToLower();
+                    string nomeFoto     = medicamento.Nome + "_" + guid.ToString();
+                    string extensaoFoto = Path.GetExtension(novaFoto.FileName).ToLower();
                     nomeFoto += extensaoFoto;
                     // Atribuir ao medicamento o nome da sua foto.
                     medicamento.Foto = nomeFoto;
@@ -130,7 +128,7 @@ namespace SMA.Controllers
                 // #############################
                 // Guardar o ficheiro da foto. #
                 // #############################
-                if (foto != null) {
+                if (novaFoto != null) {
                     // Cria um caminho para o ficheiro.
                     string nomeLocalizacaoFicheiro = _webHostEnvironment.WebRootPath;
                     nomeLocalizacaoFicheiro = Path.Combine(nomeLocalizacaoFicheiro, "Fotos");
@@ -143,7 +141,7 @@ namespace SMA.Controllers
                     // Cria o objeto que vai manipular o ficheiro.
                     using var stream = new FileStream(nomeDaFoto, FileMode.Create);
                     // Guarda o ficheiro no disco rígido.
-                    await foto.CopyToAsync(stream);
+                    await novaFoto.CopyToAsync(stream);
                 }
 
                 // Devolver o controlo da app à View.
@@ -250,6 +248,11 @@ namespace SMA.Controllers
             try {
                 _context.Medicamentos.Remove(medicamento);
                 await _context.SaveChangesAsync();
+
+                /**
+                 * Remove a imagem pertencente ao medicamento removido.
+                 */
+
             } catch (Exception) {
             }
                        

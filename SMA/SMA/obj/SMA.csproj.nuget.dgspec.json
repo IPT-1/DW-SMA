@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\andre\\Desktop\\Trabalhos\\IPT.DW.2122\\Projeto MVC\\SMA\\SMA\\SMA.csproj": {}
+    "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\SMA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\andre\\Desktop\\Trabalhos\\IPT.DW.2122\\Projeto MVC\\SMA\\SMA\\SMA.csproj": {
+    "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\SMA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\andre\\Desktop\\Trabalhos\\IPT.DW.2122\\Projeto MVC\\SMA\\SMA\\SMA.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\SMA.csproj",
         "projectName": "SMA",
-        "projectPath": "C:\\Users\\andre\\Desktop\\Trabalhos\\IPT.DW.2122\\Projeto MVC\\SMA\\SMA\\SMA.csproj",
+        "projectPath": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\SMA.csproj",
         "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\andre\\Desktop\\Trabalhos\\IPT.DW.2122\\Projeto MVC\\SMA\\SMA\\obj\\",
+        "outputPath": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\_Software\\Visual Studio 2022\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
