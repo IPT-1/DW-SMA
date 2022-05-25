@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HO+/pTTI2C8luIkuAUGjldK8drr/OwKrLGzyFPSp2vw=",
+  "Hash": "rAoOVZYUF5LmpTzH03hWr/Z17oD3227w2RVtyAuk8AM=",
   "Source": "SMA",
   "BasePath": "_content/SMA",
   "Mode": "Default",
@@ -1103,40 +1103,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\wwwroot\\Fotos\\0_Brufen.jpg",
-      "SourceId": "SMA",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\wwwroot\\",
-      "BasePath": "_content/SMA",
-      "RelativePath": "Fotos/0_Brufen.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Fotos\\0_Brufen.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\wwwroot\\Fotos\\0_Cocaina.jpg",
-      "SourceId": "SMA",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\wwwroot\\",
-      "BasePath": "_content/SMA",
-      "RelativePath": "Fotos/0_Cocaina.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Fotos\\0_Cocaina.jpg"
     },
     {
       "Identity": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\Projetos\\SMA\\SMA\\wwwroot\\Fotos\\default.png",

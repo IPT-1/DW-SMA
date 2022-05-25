@@ -63,6 +63,8 @@ namespace SMA.Models {
         /// Lista dos seus Pacientes, se o Utente for Médico.
         /// </summary>
         public ICollection<Utente> Pacientes { get; set; }
-
+        //anotacao criar uma ordem
+        //fluent api
+        //two fk to same entity
     }
 }

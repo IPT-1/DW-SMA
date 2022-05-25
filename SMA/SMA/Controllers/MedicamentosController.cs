@@ -118,7 +118,7 @@ namespace SMA.Controllers
                     _context.Add(medicamento);
                     // Sincronizar os dados.
                     await _context.SaveChangesAsync();
-                } catch (Exception ex) {
+                } catch (Exception) {
                     // Criar uma mensagem de erro.
                     ModelState.AddModelError("", "Ocorreu um erro com a operação de guardar os dados do medicamento " + medicamento.Nome);
                     // Devolver o controlo da app à View.
@@ -252,6 +252,16 @@ namespace SMA.Controllers
                 /**
                  * Remove a imagem pertencente ao medicamento removido.
                  */
+
+                string nomeLocalizacaoFicheiro = _webHostEnvironment.WebRootPath;
+                nomeLocalizacaoFicheiro = Path.Combine(nomeLocalizacaoFicheiro, "Fotos");
+
+                // Nome do documento a eliminar.
+                string nomeDaFoto = Path.Combine(nomeLocalizacaoFicheiro, medicamento.Foto);
+
+                if (nomeDaFoto != "default.png") {
+                    System.IO.File.Delete(nomeDaFoto);
+                }
 
             } catch (Exception) {
             }
