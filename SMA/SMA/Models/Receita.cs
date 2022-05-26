@@ -10,9 +10,6 @@ namespace SMA.Models {
 
         public Receita() {
             Medicamentos = new HashSet<Medicamento>();
-
-            Paciente = new HashSet<Utente>();
-            Medico = new HashSet<Utente>();
         }
 
         /// <summary>
@@ -37,16 +34,27 @@ namespace SMA.Models {
         [Display(Name = "Data de Prescrição")]
         public DateTime Prescricao { get; set; }
 
-        /// <summary>
-        /// Lista de Utentes envolventes na Receita, um médico e um paciente.
-        /// </summary>
-        public ICollection<Utente> Paciente { get; set; }
+        /* CRIAÇÃO DAS CHAVES ESTRANGEIRAS */
 
         /// <summary>
-        /// Lista de Utentes envolventes na Receita, um médico e um paciente.
+        /// Chave estrangeira para o médico.
         /// </summary>
-        public ICollection<Utente> Medico { get; set; }
+        [ForeignKey(nameof(Medico))]
+        [InverseProperty(nameof(Medico))]
+        public int MedicoFK { get; set; }
+        public Utente Medico { get; set; }
 
+        /// <summary>
+        /// Chave estrangeira para o paciente.
+        /// </summary>
+        [ForeignKey(nameof(Paciente))]
+        [InverseProperty(nameof(Paciente))]
+        public int PacienteFK { get; set; }
+        public Utente Paciente { get; set; }
+
+
+
+        /* LISTAS */
 
         /// <summary>
         /// Lista de medicamentos.
