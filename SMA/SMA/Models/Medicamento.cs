@@ -14,6 +14,7 @@ namespace SMA.Models {
         /// <summary>
         /// Chave primária PK para o Medicamento na base de dados.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>

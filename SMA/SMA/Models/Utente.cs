@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SMA.Models {
     
@@ -8,13 +9,14 @@ namespace SMA.Models {
     public class Utente {
 
         public Utente() {
-            Receitas = new HashSet<Receita>();
-            Pacientes = new HashSet<Utente>();
+            ListaReceitasCriadas = new HashSet<Receita>();
+            ListaReceitasAtribuidas = new HashSet<Receita>();
         }
 
         /// <summary>
         /// Chave primária PK para o Utenta na base de dados.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -50,21 +52,20 @@ namespace SMA.Models {
         /// Tipo de Utente. (P - Paciente / M - Médico)
         /// </summary>
         [StringLength(1, ErrorMessage = "O {0} só aceita um caráter.")]
-        [RegularExpression("[PM]", ErrorMessage = "No {0} só se aceitam as letras P ou M.")]
-        [Display(Name = "Paciente P / Médico M")]
-        public string Tipo { get; set; }
+        [Display(Name = "Paciente / Médico")]
+        public string Funcao { get; set; }
 
         /// <summary>
-        /// Lista de Receitas em que está envolvido.
+        /// Lista de Receitas criadas em que está envolvido.
         /// </summary>
-        public ICollection<Receita> Receitas { get; set; }
+        [InverseProperty("Medico")]
+        public ICollection<Receita> ListaReceitasCriadas { get; set; }
 
         /// <summary>
         /// Lista dos seus Pacientes, se o Utente for Médico.
         /// </summary>
-        public ICollection<Utente> Pacientes { get; set; }
-        //anotacao criar uma ordem
-        //fluent api
-        //two fk to same entity
+        [InverseProperty("Paciente")]
+        public ICollection<Receita> ListaReceitasAtribuidas { get; set; }
+
     }
 }

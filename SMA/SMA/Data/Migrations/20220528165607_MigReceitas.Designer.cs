@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SMA.Data;
 
@@ -11,9 +12,10 @@ using SMA.Data;
 namespace SMA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220528165607_MigReceitas")]
+    partial class MigReceitas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,21 +69,21 @@ namespace SMA.Migrations
                         new
                         {
                             Id = "a",
-                            ConcurrencyStamp = "d12ec53e-fe69-4117-b2f8-b9373cacdb00",
+                            ConcurrencyStamp = "42e0e762-d4e2-402b-b9b0-0acb66c81598",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "m",
-                            ConcurrencyStamp = "6c6abc5f-64ed-429f-b9fc-e5f7a8c5e174",
+                            ConcurrencyStamp = "869d5e5c-f146-4fd9-9b5e-9eb0d0501efa",
                             Name = "Medico",
                             NormalizedName = "MEDICO"
                         },
                         new
                         {
                             Id = "p",
-                            ConcurrencyStamp = "d1c63823-3dbc-492e-93a1-90b57b410c04",
+                            ConcurrencyStamp = "b29936c9-cf1e-4290-9506-82d264ad0293",
                             Name = "Paciente",
                             NormalizedName = "PACIENTE"
                         });

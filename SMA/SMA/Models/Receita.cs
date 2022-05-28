@@ -15,6 +15,7 @@ namespace SMA.Models {
         /// <summary>
         /// Chave primária PK para a Receita na base de dados.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -26,21 +27,15 @@ namespace SMA.Models {
         public DateTime Data { get; set; }
 
         /// <summary>
-        /// Data de Prescrição da Receita.
+        /// Prescrição da Receita.
         /// </summary>
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
-                     ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
-        [Display(Name = "Data de Prescrição")]
-        public DateTime Prescricao { get; set; }
-
-        /* CRIAÇÃO DAS CHAVES ESTRANGEIRAS */
+        [Display(Name = "Prescrição")]
+        public string Prescricao { get; set; }
 
         /// <summary>
         /// Chave estrangeira para o médico.
         /// </summary>
         [ForeignKey(nameof(Medico))]
-        [InverseProperty(nameof(Medico))]
         public int MedicoFK { get; set; }
         public Utente Medico { get; set; }
 
@@ -48,13 +43,8 @@ namespace SMA.Models {
         /// Chave estrangeira para o paciente.
         /// </summary>
         [ForeignKey(nameof(Paciente))]
-        [InverseProperty(nameof(Paciente))]
         public int PacienteFK { get; set; }
         public Utente Paciente { get; set; }
-
-
-
-        /* LISTAS */
 
         /// <summary>
         /// Lista de medicamentos.
