@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dHrx6oEtJ0h30R9UoKWccfZ0jRXwcQUjHkq4yvTErFC4Oj/ffVkF0tR2OAu7ZVbKPBJ4BJUrR8QQIDiSbtlxxQ==",
+  "dgSpecHash": "XgBBMUlDm8P3Wfl62njPnpcgn51e7KMvbZm7erLu20gdEQE1BfU6eryGjmbHpgH5SD9qgeJ7LwCUI9LdgNSmXw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\andre\\Desktop\\Trabalhos\\_IPT.2021.2022\\DW\\SMA\\SMA\\SMA.csproj",
+  "projectFilePath": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\MVC\\SMA\\SMA\\SMA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\andre\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\andre\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

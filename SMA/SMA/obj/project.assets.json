@@ -10071,11 +10071,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\andre\\Desktop\\Trabalhos\\_IPT.2021.2022\\DW\\SMA\\SMA\\SMA.csproj",
+      "projectUniqueName": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\MVC\\SMA\\SMA\\SMA.csproj",
       "projectName": "SMA",
-      "projectPath": "C:\\Users\\andre\\Desktop\\Trabalhos\\_IPT.2021.2022\\DW\\SMA\\SMA\\SMA.csproj",
+      "projectPath": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\MVC\\SMA\\SMA\\SMA.csproj",
       "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\andre\\Desktop\\Trabalhos\\_IPT.2021.2022\\DW\\SMA\\SMA\\obj\\",
+      "outputPath": "C:\\Users\\andre\\Desktop\\IPT.2122\\DW\\MVC\\SMA\\SMA\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -10153,7 +10153,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
